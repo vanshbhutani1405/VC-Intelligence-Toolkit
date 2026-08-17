@@ -1,4 +1,4 @@
-# Together Intelligence Toolkit — Technical Writeup
+# VC Intelligence Toolkit — Technical Writeup
 ### One writeup per tool: architecture choices, what worked, what I'd improve, what I'd need from the firm for production.
 
 ---
@@ -7,9 +7,9 @@
 
 **Architecture choices**
 
-Corridor Atlas is a LangGraph pipeline with a parallel fan-out at the start: three independent nodes (`fetch_github_node`, `fetch_hn_node`, `fetch_arxiv_node`) call the GitHub REST API, the HN Algolia API, and the arXiv API concurrently, since none of these calls depend on each other. Their outputs merge into a single normalized shape in `merge_node`. From there, `embedding_similarity_node` embeds every candidate's description using `sentence-transformers` (`all-MiniLM-L6-v2`, chosen for being free, local, and fast enough not to need a paid embedding API) and compares each one against Together's own portfolio embeddings, stored as pgvector columns directly in the Supabase database rather than a separate vector store. This avoids running two databases for one project. The top candidates by similarity go to `reasoning_node`, which calls Groq to generate a short "Why Together?" explanation citing the nearest portfolio match, plus a confidence level. `output_formatter_node` shapes everything into the `CandidateOut` schema and the service layer persists it as a `Candidate` row along with a `Run` record for tracking.
+Corridor Atlas is a LangGraph pipeline with a parallel fan-out at the start: three independent nodes (`fetch_github_node`, `fetch_hn_node`, `fetch_arxiv_node`) call the GitHub REST API, the HN Algolia API, and the arXiv API concurrently, since none of these calls depend on each other. Their outputs merge into a single normalized shape in `merge_node`. From there, `embedding_similarity_node` embeds every candidate's description using `sentence-transformers` (`all-MiniLM-L6-v2`, chosen for being free, local, and fast enough not to need a paid embedding API) and compares each one against VC's own portfolio embeddings, stored as pgvector columns directly in the Supabase database rather than a separate vector store. This avoids running two databases for one project. The top candidates by similarity go to `reasoning_node`, which calls Groq to generate a short "Why VC?" explanation citing the nearest portfolio match, plus a confidence level. `output_formatter_node` shapes everything into the `CandidateOut` schema and the service layer persists it as a `Candidate` row along with a `Run` record for tracking.
 
-The core design decision was using Together's real portfolio as the thesis reference instead of a generic keyword filter. This is the one piece of the toolkit that structurally cannot work without Together's actual data, which was intentional.
+The core design decision was using VC's real portfolio as the thesis reference instead of a generic keyword filter. This is the one piece of the toolkit that structurally cannot work without VC's actual data, which was intentional.
 
 **What worked**
 
@@ -43,7 +43,7 @@ Right now the retry cap is fixed at one. I'd want to make that adaptive, retryin
 
 **What I'd need from the firm for production**
 
-Access to real data rooms and founder-provided materials rather than public descriptions would make the extracted claims meaningfully richer, which is the biggest lever on output quality here. I'd also want partner feedback on a batch of real outputs to calibrate what "high confidence" should actually mean in Together's own risk tolerance, since right now that threshold is my own judgment call rather than a calibrated one.
+Access to real data rooms and founder-provided materials rather than public descriptions would make the extracted claims meaningfully richer, which is the biggest lever on output quality here. I'd also want partner feedback on a batch of real outputs to calibrate what "high confidence" should actually mean in VC's own risk tolerance, since right now that threshold is my own judgment call rather than a calibrated one.
 
 ---
 
@@ -57,7 +57,7 @@ The key architectural decision was pulling in MoatLens's diligence output as an 
 
 **What worked**
 
-In a live run against a real discovered candidate, Navigator correctly pulled in the prior MoatLens report and generated interview questions that directly targeted gaps MoatLens had already flagged, like unclear customer traction and unproven technical defensibility, rather than generic questions. That connection between modules is the part of the toolkit I'm most confident actually reflects Together's real workflow rather than three disconnected demos glued together.
+In a live run against a real discovered candidate, Navigator correctly pulled in the prior MoatLens report and generated interview questions that directly targeted gaps MoatLens had already flagged, like unclear customer traction and unproven technical defensibility, rather than generic questions. That connection between modules is the part of the toolkit I'm most confident actually reflects VC's real workflow rather than three disconnected demos glued together.
 
 **What I'd improve with more time**
 

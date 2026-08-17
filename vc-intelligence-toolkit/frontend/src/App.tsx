@@ -25,7 +25,7 @@ function App() {
             to="/dashboard"
             className="font-sans text-sm font-medium uppercase tracking-[0.18em] text-ink"
           >
-            Together Intelligence
+            VC Intelligence
           </NavLink>
           <div className="flex flex-wrap gap-2">
             {navItems.map((item) => (
