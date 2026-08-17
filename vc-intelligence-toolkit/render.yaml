@@ -3,11 +3,11 @@
 services:
   # Web service for the FastAPI application.
   - type: web
-    name: together-intelligence-toolkit-backend
+    name: vc-intelligence-toolkit-backend
     env: python
     plan: free
     branch: main
-    rootDir:  together-intelligence-toolkit/backend
+    rootDir:  vc-intelligence-toolkit/backend
     autoDeploy: true
     pythonVersion: 3.12.10
     buildCommand: pip install -r requirements.txt

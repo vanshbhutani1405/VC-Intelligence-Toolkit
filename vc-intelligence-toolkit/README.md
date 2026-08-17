@@ -1,6 +1,6 @@
-# 🚀 Together Intelligence Toolkit
+# 🚀 VC Intelligence Toolkit
 
-> **An AI-powered decision-support platform built for Together Fund to augment the investment workflow from startup discovery to AI diligence and founder routing.**
+> **An AI-powered decision-support platform built for VC Fund to augment the investment workflow from startup discovery to AI diligence and founder routing.**
 
 ![Python](https://img.shields.io/badge/Python-3.12-blue?style=flat-square)
 ![FastAPI](https://img.shields.io/badge/FastAPI-Backend-009688?style=flat-square)
@@ -13,7 +13,7 @@
 
 ## 📌 Overview
 
-Together Intelligence Toolkit is a full-stack AI platform designed specifically for **Together Fund**. It models the early investment workflow through **three connected but independently runnable AI modules**.
+VC Intelligence Toolkit is a full-stack AI platform designed specifically for **VC Fund**. It models the early investment workflow through **three connected but independently runnable AI modules**.
 
 ```text
 Discover
@@ -28,14 +28,14 @@ Route
 ## 🏗️ System Architecture
 
 <p align="center">
-<img src="docs/Together%20System%20Architecture.png" width="700">
+<img src="docs/VC%20System%20Architecture.png" width="700">
 </p>
 
 ---
 
 ## 🛰️ Corridor Atlas
 
-Discovers promising AI startups from **GitHub, Hacker News and arXiv**, compares them with Together Fund's portfolio using semantic search, and generates **Why Together?** explanations with confidence scores.
+Discovers promising AI startups from **GitHub, Hacker News and arXiv**, compares them with VC Fund's portfolio using semantic search, and generates **Why VC?** explanations with confidence scores.
 
 <p align="center">
 <img src="docs/CorridorAtlas%20Agent%20Diagram.png" width="700">
@@ -62,7 +62,7 @@ using **Bull → Bear → Reflection → Synthesis** reasoning.
 
 ## 🧭 SwarmSpace Navigator
 
-Analyzes founder applications and recommends the best Together pathway:
+Analyzes founder applications and recommends the best VC pathway:
 
 - Investment
 - AI Studio
@@ -115,7 +115,7 @@ npm run dev
 
 ## 📌 Assignment
 
-Built as part of the **Together Fund Technical Intern Assignment** to demonstrate practical AI-powered decision-support systems tailored to an operator-led venture capital firm's workflow.
+Built as part of the **VC Fund Technical Intern Assignment** to demonstrate practical AI-powered decision-support systems tailored to an operator-led venture capital firm's workflow.
 
 ---
 

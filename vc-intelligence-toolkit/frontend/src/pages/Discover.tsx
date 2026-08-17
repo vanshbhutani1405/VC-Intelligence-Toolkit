@@ -52,7 +52,7 @@ export default function Discover() {
         <h1 className="text-[clamp(1.75rem,3vw,2.5rem)]">Corridor Atlas</h1>
         <p className="mt-6 max-w-2xl text-lg leading-8 text-ink-secondary">
           Search the frontier and surface companies with meaningful proximity to
-          Together's portfolio.
+          VC's portfolio.
         </p>
       </section>
 
