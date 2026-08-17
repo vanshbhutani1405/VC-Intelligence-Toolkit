@@ -1,4 +1,4 @@
-# Together Intelligence Toolkit
+# VC Intelligence Toolkit
 
 > **An AI-powered decision-support platform that augments Together Fund's early investment workflow — from discovering promising AI startups to evaluating technical moats and recommending the right founder pathway.**
 
